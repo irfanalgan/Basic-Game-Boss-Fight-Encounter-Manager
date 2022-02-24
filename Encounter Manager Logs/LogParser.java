@@ -11,8 +11,7 @@ public class LogParser {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-    //TODO: Read file into a list of player scores (List of PlayerScore)
-
+   
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File("encounterLogs.csv"))));
 
         Function<String, PlayerScore> mapToLogs = (line) -> {
@@ -22,7 +21,6 @@ public class LogParser {
         List<PlayerScore> scores = br.lines().skip(1).map(mapToLogs).collect(Collectors.toList());
 
     // Query 1: Damage received by the player named Chopper.
-    //TODO
         System.out.println("Query 1:");
         scores.stream()
                 .filter(s -> s.getPlayerName().equals("Chopper"))
@@ -30,8 +28,7 @@ public class LogParser {
                 .forEach(System.out::println);
         System.out.println("--------");
 
-    // Query 2: List of healers' names that did more healing than 300 (HealingDone > 300)
-    //TODO    
+    // Query 2: List of healers' names that did more healing than 300 (HealingDone > 300) 
         System.out.println("Query 2:");
         scores.stream()
                 .filter(s -> s.getHealingDone() > 300)
@@ -43,7 +40,6 @@ public class LogParser {
 
 
     // Query 3: Damage dealt per damage received ratio for tanks
-    //TODO
         System.out.println("Query 3:");
         scores.stream()
                 .filter(s -> s.getRole().equals("Tank"))
@@ -53,7 +49,6 @@ public class LogParser {
 
 
     // Query 4: The name of the damage dealer that dealt the least amount of damage per attack (DamageDealt/Attacks)
-    //TODO
         System.out.println("Query 4:");
         System.out.println(scores.stream()
                 .filter(s -> s.getRole().equals("DamageDealer"))
@@ -63,7 +58,6 @@ public class LogParser {
         System.out.println("--------");
 
     // Query 5: How much healing was received by the tank that dealt the most damage 
-    //TODO
         System.out.println("Query 5:");
         System.out.println(scores.stream()
                 .filter(s -> s.getRole().equals("Tank"))
